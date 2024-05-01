@@ -2,11 +2,17 @@
 using DoorAccessManager.Items.Entities;
 using DoorAccessManager.Items.Enums;
 using Microsoft.EntityFrameworkCore;
+using BC = BCrypt.Net.BCrypt;
 
 namespace DoorAccessManager.Api
 {
     public static class Initializer
     {
+        private static readonly Guid _employeeRoleId = Guid.NewGuid();
+        private static readonly Guid _adminRoleId = Guid.NewGuid();
+        private static readonly Guid _officeManagerRoleId = Guid.NewGuid();
+
+
         public static void InitializeDatabase(IApplicationBuilder application)
         {
             var serviceScope = application.ApplicationServices.CreateScope();
@@ -40,6 +46,7 @@ namespace DoorAccessManager.Api
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
+                context.Roles.AddRange(GetRoles());
                 context.Offices.Add(GetOffice());
 
                 context.SaveChanges();
@@ -56,6 +63,7 @@ namespace DoorAccessManager.Api
 
             if (db is not null)
             {
+                db.Roles.AddRange(GetRoles());
                 db.Offices.Add(GetOffice());
 
                 db.SaveChanges();
@@ -64,11 +72,6 @@ namespace DoorAccessManager.Api
 
         private static List<User> GetUsers()
         {
-            var roles = GetRoles();
-            var employeeRole = roles.Where(x => x.Name == RoleTypes.Employee.ToString()).FirstOrDefault()!;
-            var adminRole = roles.Where(x => x.Name == RoleTypes.Admin.ToString()).FirstOrDefault()!;
-            var officeManagerRole = roles.Where(x => x.Name == RoleTypes.OfficeManager.ToString()).FirstOrDefault()!;
-
             return new List<User>
             {
                 new User
@@ -76,40 +79,40 @@ namespace DoorAccessManager.Api
                     Id = Guid.NewGuid(),
                     CreatedOn = DateTime.UtcNow,
                     IsActive = true,
-                    UserName = "first_emp",
+                    Username = "first_emp",
                     Name = "First Employee",
-                    PasswordHash = "123",
-                    Role = employeeRole
+                    PasswordHash = BC.HashPassword("123"),
+                    RoleId = _employeeRoleId
                 },
                 new User
                 {
                     Id = Guid.NewGuid(),
                     CreatedOn = DateTime.UtcNow,
                     IsActive=true,
-                    UserName = "second_emp",
+                    Username = "second_emp",
                     Name = "Second Employee",
-                    PasswordHash = "123",
-                    Role = employeeRole
+                    PasswordHash = BC.HashPassword("123"),
+                    RoleId = _employeeRoleId
                 },
                 new User
                 {
                     Id = Guid.NewGuid(),
                     CreatedOn = DateTime.UtcNow,
                     IsActive = true,
-                    UserName = "admin",
+                    Username = "admin",
                     Name = "Admin",
-                    PasswordHash = "123",
-                    Role = adminRole
+                    PasswordHash = BC.HashPassword("123"),
+                    RoleId = _adminRoleId
                 },
                 new User
                 {
                     Id = Guid.NewGuid(),
                     CreatedOn = DateTime.UtcNow,
                     IsActive = true,
-                    UserName = "office_manager",
+                    Username = "office_manager",
                     Name = "Office Manager",
-                    PasswordHash = "123",
-                    Role = officeManagerRole
+                    PasswordHash = BC.HashPassword("123"),
+                    RoleId = _officeManagerRoleId
                 },
             };
         }
@@ -120,21 +123,21 @@ namespace DoorAccessManager.Api
             {
                 new Role
                 {
-                    Id = Guid.NewGuid(),
+                    Id = _employeeRoleId,
                     CreatedOn = DateTime.UtcNow,
                     IsActive = true,
                     Name = RoleTypes.Employee.ToString()
                 },
                 new Role
                 {
-                    Id = Guid.NewGuid(),
+                    Id = _adminRoleId,
                     CreatedOn = DateTime.UtcNow,
                     IsActive = true,
                     Name = RoleTypes.Admin.ToString()
                 },
                 new Role
                 {
-                    Id = Guid.NewGuid(),
+                    Id = _officeManagerRoleId,
                     CreatedOn = DateTime.UtcNow,
                     IsActive = true,
                     Name = RoleTypes.OfficeManager.ToString()
@@ -144,11 +147,6 @@ namespace DoorAccessManager.Api
 
         private static List<Door> GetDoors()
         {
-            var roles = GetRoles();
-            var employeeRoleId = roles.FirstOrDefault(x => x.Name == RoleTypes.Employee.ToString())!.Id;
-            var adminRoleId = roles.FirstOrDefault(x => x.Name == RoleTypes.Admin.ToString())!.Id;
-            var officeManagerRoleId = roles.FirstOrDefault(x => x.Name == RoleTypes.OfficeManager.ToString())!.Id;
-
             return new List<Door>
             {
                 new Door
@@ -163,19 +161,19 @@ namespace DoorAccessManager.Api
                         {
                             Id = Guid.NewGuid(),
                             CreatedOn = DateTime.UtcNow,
-                            RoleId = employeeRoleId
+                            RoleId = _employeeRoleId
                         },
                         new DoorRole
                         {
                             Id = Guid.NewGuid(),
                             CreatedOn = DateTime.UtcNow,
-                            RoleId= adminRoleId
+                            RoleId= _adminRoleId
                         },
                         new DoorRole
                         {
                             Id = Guid.NewGuid(),
                             CreatedOn = DateTime.UtcNow,
-                            RoleId = officeManagerRoleId
+                            RoleId = _officeManagerRoleId
                         }
                     }
                 },
@@ -184,20 +182,20 @@ namespace DoorAccessManager.Api
                     Id = Guid.NewGuid(),
                     CreatedOn = DateTime.UtcNow,
                     IsActive = true,
-                    Name ="Warehouse",
+                    Name ="Storage Room",
                     DoorRoles = new List<DoorRole>
                     {
                         new DoorRole
                         {
                             Id = Guid.NewGuid(),
                             CreatedOn = DateTime.UtcNow,
-                            RoleId= adminRoleId
+                            RoleId= _adminRoleId
                         },
                         new DoorRole
                         {
                             Id = Guid.NewGuid(),
                             CreatedOn = DateTime.UtcNow,
-                            RoleId = officeManagerRoleId
+                            RoleId = _officeManagerRoleId
                         }
                     }
                 }

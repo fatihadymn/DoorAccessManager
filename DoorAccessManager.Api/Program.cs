@@ -1,5 +1,6 @@
 using DoorAccessManager.Api;
 using DoorAccessManager.Core;
+using DoorAccessManager.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,25 +9,32 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersCustom()
                 .AddValidators();
 
-builder.Services.AddServices(typeof(CoreIdentifier))
+builder.Services.AddRepositories(typeof(DataIdentifier))
+                .AddServices(typeof(CoreIdentifier))
+                .AddMappings()
                 .ConfigureDatabase(builder.Configuration.GetConnectionString("SQLite"));
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerCustom();
+builder.Services.AddJwt();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
+
+app.UseSwaggerCustom();
 
 app.UseErrorHandler()
     .UseRouting();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

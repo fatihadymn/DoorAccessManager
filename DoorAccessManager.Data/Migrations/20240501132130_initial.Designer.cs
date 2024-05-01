@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoorAccessManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240430220510_initial")]
+    [Migration("20240501132130_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -187,7 +187,7 @@ namespace DoorAccessManager.Data.Migrations
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -197,7 +197,7 @@ namespace DoorAccessManager.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.HasIndex("UserName")
+                    b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("Users");

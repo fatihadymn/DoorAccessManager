@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DoorAccessManager.Data\DoorAccessManager.Data.csproj" />
     <ProjectReference Include="..\DoorAccessManager.Items\DoorAccessManager.Items.csproj" />
   </ItemGroup>
 

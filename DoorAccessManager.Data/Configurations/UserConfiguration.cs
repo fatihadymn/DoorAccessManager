@@ -13,10 +13,10 @@ namespace DoorAccessManager.Data.Configurations
             builder.Property(x => x.Name)
                    .IsRequired();
 
-            builder.Property(x => x.UserName)
+            builder.Property(x => x.Username)
                    .IsRequired();
 
-            builder.HasIndex(x => x.UserName)
+            builder.HasIndex(x => x.Username)
                    .IsUnique();
 
             builder.Property(x => x.PasswordHash)

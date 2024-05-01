@@ -184,7 +184,7 @@ namespace DoorAccessManager.Data.Migrations
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -194,7 +194,7 @@ namespace DoorAccessManager.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.HasIndex("UserName")
+                    b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("Users");

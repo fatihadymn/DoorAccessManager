@@ -69,7 +69,7 @@ namespace DoorAccessManager.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    UserName = table.Column<string>(type: "TEXT", nullable: false),
+                    Username = table.Column<string>(type: "TEXT", nullable: false),
                     PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
                     RoleId = table.Column<Guid>(type: "TEXT", nullable: false),
                     OfficeId = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -186,9 +186,9 @@ namespace DoorAccessManager.Data.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_UserName",
+                name: "IX_Users_Username",
                 table: "Users",
-                column: "UserName",
+                column: "Username",
                 unique: true);
         }
 
