@@ -122,7 +122,7 @@ namespace DoorAccessManager.Api
             services.AddScoped(typeof(DbContext), typeof(ApplicationDbContext));
         }
 
-        public static IServiceCollection AddJwt(this IServiceCollection services, Action<AuthorizationOptions> authorizationOptions = null)
+        public static IServiceCollection AddJwt(this IServiceCollection services, Action<AuthorizationOptions>? authorizationOptions = null)
         {
             IConfiguration configuration;
             ILogger<JwtOptions> logger;
