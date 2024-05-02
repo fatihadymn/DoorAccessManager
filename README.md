@@ -36,12 +36,32 @@ This project has one Web API and four Class Library.
   If you want to check inside of this file. You can use some online applications like [SQLiteViewer](https://sqliteviewer.app/).
 
 ## Test
-### Swagger
-You can see all endpoints on swagger's page when you run the project.
+This system has three roles like below.
+```sh
+Admin
+Employee
+OfficeManager 
+  ```
 
+### Swagger
+You can see all endpoints on swagger's page when you run the project. Every endpoints need ##JWT TOKEN## except ```POST /api/users/login``` method. We can use Authorize button in the top right with ```Bearer {JWT TOKEN}```.
 ![image](https://github.com/fatihadymn/DoorAccessManager/assets/38660944/70cc0c0f-3e47-4c38-85a9-a762c0903a28)
 
+These endpoints are required to access doors and to see access logs.
+![image](https://github.com/fatihadymn/DoorAccessManager/assets/38660944/9e7fad84-cb67-415c-96e8-88360adb3b39)
 
+- ```GET /api/doors``` provides authenticated user's office doors list. It is up to office and authenticated user's role. Every role can access this endpoint.
+- ```POST /api/doors/{id}/access``` provides to check that authenticated user can access that door. Every role can access this endpoint.
+- ```GET /api/doors/{id}/access-logs``` provides to see access logs for exact door. Only Admin and OfficeManager can access this endpoint.
+- ```POST /api/users/login``` is using for authentication. When we use this endpoint with correct ```username``` and ```password``` we can get ##JWT TOKEN##. Everyone should access this endpoint.
+
+These endpoints are extra to manage couple of User Process.
+![image](https://github.com/fatihadymn/DoorAccessManager/assets/38660944/fcd27330-cb8c-4cf6-a668-1219e93bef28)
+
+- ```POST /api/users``` provides to create new user to authenticated user's office. Only Admin can access this endpoint.
+- ```GET /api/users``` provides to office's users list. Only Admin can access this endpoint.
+- ``` PATCH /api/users/{id}/password``` provides to change only your password. Every role can access this endpoint.
+- ```DELETE /api/users/{id}``` can make soft delete from users. Only Admin can access this endpoint.
 
 ---------------------
 
