@@ -22,11 +22,11 @@ This project has one Web API and four Class Library.
 
 ![image](https://github.com/fatihadymn/DoorAccessManager/assets/38660944/495cb477-0627-4592-ab02-38e1bf88e7a4)
 
-- **DoorAccessManager.Api** has Controllers and Initializations for project. This is the main API Project.
-- **DoorAccessManager.Core** has Services' classes and interfaces.
-- **DoorAccessManager.Data** has our Database Context, Configurations for Entities, Repositories and Migrations.
-- **DoorAccessManager.Items** has Entities, Request/Response Models, Enums, Mapping Configurations and Validators for requests.
-- **DoorAccessManager.Tests** has Unit Tests for project.
+- ```DoorAccessManager.Api``` has Controllers and Initializations for project. This is the main API Project.
+- ```DoorAccessManager.Core``` has Services' classes and interfaces.
+- ```DoorAccessManager.Data``` has our Database Context, Configurations for Entities, Repositories and Migrations.
+- ```DoorAccessManager.Items``` has Entities, Request/Response Models, Enums, Mapping Configurations and Validators for requests.
+- ```DoorAccessManager.Tests``` has Unit Tests for project.
 <br></br>
 ## **How to see Database**
   After running the project, **DoorAccessManager.db** will be created automatically. Also migrations will be apply to database and some data will be added by project. This file is creating by system while runtime. If you want to reset it just delete file and restart the project.
