@@ -23,6 +23,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace DoorAccessManager.Api
 {
@@ -42,7 +43,7 @@ namespace DoorAccessManager.Api
             {
                 opt.Filters.Add<ModelValidatorAttribute>();
                 opt.Filters.Add(new AuthorizeFilter(policy));
-            });
+            }).AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         }
 
         public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)

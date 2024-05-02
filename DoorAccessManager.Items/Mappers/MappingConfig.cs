@@ -15,6 +15,10 @@ namespace DoorAccessManager.Items.Mappers
                 .Map(dest => dest.FullName, src => src.User.Name)
                 .Map(dest => dest.Username, src => src.User.Username)
                 .Map(dest => dest.DoorName, src => src.Door.Name);
+
+            config.NewConfig<User, GetUserResponse>()
+                .Map(dest => dest.Role, src => src.Role.Name)
+                .Map(dest => dest.OfficeName, src => src.Office.Name);
         }
     }
 }

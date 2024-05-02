@@ -34,7 +34,7 @@ namespace DoorAccessManager.Api.Controllers
             }));
         }
 
-        [HttpPost("{id:guid}")]
+        [HttpPost("{id:guid}/access")]
         [Authorize(Policy = nameof(RolePolicyTypes.All))]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         public async Task<IActionResult> AccessDoor([FromRoute] Guid id)
