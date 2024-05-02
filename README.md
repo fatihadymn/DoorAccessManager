@@ -1,5 +1,5 @@
 # **Door Acceess Manager**
-Door Access Manager system provide to manage and view **Office**, **User**, **Door** and **Access Logs**. There is no necessary to install any additional things to run and build the code base.If your system has .Net 7 requirements to run it, that is enough.
+Door Access Manager system provide to manage and view **Office**, **User**, **Door** and **Access Logs**. There is no necessary to install any additional things to run and build the code base. If your system has .Net 7 requirements to run it, that is enough.
 
 ## **Tech Stack and Libraries**
 - ```.Net 7.0```
@@ -16,7 +16,6 @@ Door Access Manager system provide to manage and view **Office**, **User**, **Do
   - This library provide to hash for strings. I want to keep hashed passwords instead of passwords directly in database.
 - ```JWT```
   - This is my authentication type for my solution.
-
 <br></br>
 ## **About Architecture**
 This project has one Web API and four Class Library.  
@@ -28,15 +27,13 @@ This project has one Web API and four Class Library.
 - **DoorAccessManager.Data** has our Database Context, Configurations for Entities, Repositories and Migrations.
 - **DoorAccessManager.Items** has Entities, Request/Response Models, Enums, Mapping Configurations and Validators for requests.
 - **DoorAccessManager.Tests** has Unit Tests for project.
-
 <br></br>
 ## **How to see Database**
-  After running the project, **DoorAccessManager.db** will be created automatically. Also migrations will be apply to database and some data will be added by project automatically. This file is creating by system while runtime. If you want to reset it just delete file and restart the project.
+  After running the project, **DoorAccessManager.db** will be created automatically. Also migrations will be apply to database and some data will be added by project. This file is creating by system while runtime. If you want to reset it just delete file and restart the project.
   
   ![image](https://github.com/fatihadymn/DoorAccessManager/assets/38660944/7aacd717-432b-4bfa-b4f1-8bbc8df89b80)
 
   If you want to check inside of this file. You can use some online applications like [SQLiteViewer](https://sqliteviewer.app/).
-
 <br></br>
 ## **Test**
 This system has three roles like below.
@@ -54,7 +51,6 @@ This system has default users and all passwords are ```123``` for all users belo
 You can see all endpoints on swagger's page when you run the project. Every endpoints need **JWT TOKEN** except ```POST /api/users/login``` method. We can use Authorize button in the top right with ```Bearer {JWT TOKEN}```.
 
 ![image](https://github.com/fatihadymn/DoorAccessManager/assets/38660944/70cc0c0f-3e47-4c38-85a9-a762c0903a28)
-
 <br></br>
 These endpoints are required to access doors and to see access logs.
 
@@ -64,7 +60,6 @@ These endpoints are required to access doors and to see access logs.
 - ```POST /api/doors/{id}/access``` provides to check that authenticated user can access that door. Every role can access this endpoint.
 - ```GET /api/doors/{id}/access-logs``` provides to see access logs for exact door. Only Admin and OfficeManager can access this endpoint.
 - ```POST /api/users/login``` is using for authentication. When we use this endpoint with correct ```username``` and ```password``` we can get **JWT TOKEN**. Everyone should access this endpoint.
-
 <br></br>
 These endpoints are extra to manage couple of User Process.
 
@@ -74,7 +69,6 @@ These endpoints are extra to manage couple of User Process.
 - ```GET /api/users``` provides to office's users list. Only Admin can access this endpoint.
 - ``` PATCH /api/users/{id}/password``` provides to change only your password. Every role can access this endpoint.
 - ```DELETE /api/users/{id}``` can make soft delete from users. Only Admin can access this endpoint.
-
 <br></br>
 ## **Clear**
   When all tests are done, you can just delete your local database file and that's it.
