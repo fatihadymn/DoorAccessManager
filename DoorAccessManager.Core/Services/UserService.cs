@@ -19,7 +19,7 @@ namespace DoorAccessManager.Core.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
-        private JwtOptions _jwtOptions;
+        private readonly JwtOptions _jwtOptions;
         private readonly IMapper _mapper;
 
         public UserService(IUserRepository userRepository, IConfiguration configuration, IMapper mapper)

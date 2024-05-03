@@ -38,7 +38,7 @@ namespace DoorAccessManager.Api.Controllers
 
         [HttpPost]
         [Authorize(Policy = nameof(RolePolicyTypes.Admin))]
-        [ProducesResponseType(typeof(CreateUserResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CreateUserResponse), StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
         {
             request.OfficeId = _contextAccessor.OfficeId;
