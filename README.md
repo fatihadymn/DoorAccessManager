@@ -7,6 +7,8 @@ Door Access Manager system provide to manage and view **Office**, **User**, **Do
   - To run solution without any changes or installments. It is a relational database and creating while runtime.
 - ```InMemoryDatabase (For UnitTests)```
   - When we want to write some unit tests for our repositories. We cannot mock our Database Context directly. So I am configuring InMemoryDatabase and able to write tests with real database.
+- ```Moq```
+  - While writing unit test, we are mocking the requirements services etc.
 - ```Entity Framework```
 - ```Mapster```
   - This is the alternative for AutoMapper. However while using Mapster we do not have to add Profiles like in AutoMapper. We can write custom mapping and we can map directly. 
