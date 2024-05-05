@@ -20,15 +20,16 @@ Door Access Manager system provide to manage and view **Office**, **User**, **Do
   - This is my authentication type for my solution.
 <br></br>
 ## **About Architecture**
-This project has one Web API and four Class Library.  
+This project has one Web API and four Class Library and Solution Items folder.  
 
-![image](https://github.com/fatihadymn/DoorAccessManager/assets/38660944/495cb477-0627-4592-ab02-38e1bf88e7a4)
+![image](https://github.com/fatihadymn/DoorAccessManager/assets/38660944/f663d499-3d76-4993-a653-dfe87b726ced)
 
 - ```DoorAccessManager.Api``` has Controllers and Initializations for project. This is the main API Project.
 - ```DoorAccessManager.Core``` has Services' classes and interfaces.
 - ```DoorAccessManager.Data``` has our Database Context, Configurations for Entities, Repositories and Migrations.
 - ```DoorAccessManager.Items``` has Entities, Request/Response Models, Enums, Mapping Configurations and Validators for requests.
-- ```DoorAccessManager.Tests``` has Unit Tests for project.
+- ```DoorAccessManager.Tests``` has Unit Tests for Controllers, Services and Repositories.
+- ```Solution Items``` folder has some external files like READMe.md file.
 <br></br>
 ## **How to see Database**
   After running the project, **DoorAccessManager.db** will be created automatically. Also migrations will be apply to database and some data will be added by project. This file is creating by system while runtime. If you want to reset it just delete file and restart the project.
