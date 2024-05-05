@@ -1,8 +1,8 @@
 # **Door Acceess Manager**
-Door Access Manager system provide to manage and view **Office**, **User**, **Door** and **Access Logs**. There is no necessary to install any additional things to run and build the code base. If your system has .Net 7 requirements to run it, that is enough.
+Door Access Manager system provide to manage and view **Office**, **User**, **Door** and **Access Logs**. There is no necessary to install any additional things to run and build the code base. If your system has .Net 8 requirements to run it, that is enough.
 
 ## **Tech Stack and Libraries**
-- ```.Net 7.0```
+- ```.Net 8.0```
 - ```SQLite```
   - To run solution without any changes or installments. It is a relational database and creating while runtime.
 - ```InMemoryDatabase (For UnitTests)```

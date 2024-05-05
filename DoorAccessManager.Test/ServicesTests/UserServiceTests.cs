@@ -63,7 +63,7 @@
             var invalidLoginRequest = new LoginRequest { Username = "invaliduser", Password = "invalidpassword" };
 
             _mockUserRepository.Setup(repo => repo.GetUserAsync(invalidLoginRequest.Username, invalidLoginRequest.Password))
-                               .ReturnsAsync((User)null);
+                               .ReturnsAsync(null as User);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => _userService.LoginAsync(invalidLoginRequest));
